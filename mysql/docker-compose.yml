@@ -1,0 +1,56 @@
+version: '3'
+services:
+  mysql-node1:
+    image: 'mysql/mysql-server:5.7'
+    restart: always
+    container_name: mysql-node1
+    volumes:
+    - ./conf/mysql-node1:/etc/mysql/:ro
+    - ./data/node1:/var/lib/mysql:rw
+    - ./conf/timezone:/etc/localtime:ro
+    - ./conf/hosts:/etc/hosts:ro
+    networks: # 网络
+    - db_net
+    ulimits: # 操作系统限制
+      nproc: 65535
+    hostname: mysql-node1 # hostname
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456
+    - MYSQL_ROOT_HOST=%
+  mysql-node2:
+    image: 'mysql/mysql-server:5.7'
+    restart: always
+    container_name: mysql-node2
+    volumes:
+    - ./conf/mysql-node2:/etc/mysql/:ro
+    - ./data/node2:/var/lib/mysql:rw
+    - ./conf/timezone:/etc/localtime:ro
+    - ./conf/hosts:/etc/hosts:ro
+    networks: # 网络
+    - db_net
+    ulimits: # 操作系统限制
+      nproc: 65535
+    hostname: mysql-node2 # hostname
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456
+    - MYSQL_ROOT_HOST=%
+  mysql-node3:
+    image: 'mysql/mysql-server:5.7'
+    restart: always
+    container_name: mysql-node3
+    volumes:
+    - ./conf/mysql-node3:/etc/mysql/:ro
+    - ./data/node3:/var/lib/mysql:rw
+    - ./conf/timezone:/etc/localtime:ro
+    - ./conf/hosts:/etc/hosts:ro
+    networks: # 网络
+    - db_net
+    ulimits: # 操作系统限制
+      nproc: 65535
+    hostname: mysql-node3 # hostname
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456
+    - MYSQL_ROOT_HOST=%
+networks:
+  db_net:
+    external: true

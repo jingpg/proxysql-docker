@@ -1,0 +1,12 @@
+version: '2'
+services:
+  proxysql-node1:
+    image: 'severalnines/proxysql'
+    container_name: proxysql-node1
+    volumes:
+    - ./src/conf/proxysql.cnf:/etc/proxysql.cnf:ro
+    networks:
+    - db_net
+networks:
+  db_net:
+    external: true
